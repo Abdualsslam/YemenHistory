@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yemenhistory/core/routes/app_routes.dart';
 
 void main() {
   runApp(const YemenHistory());
@@ -9,6 +10,6 @@ class YemenHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return MaterialApp.router(debugShowCheckedModeBanner: false, routerConfig: router);
   }
 }
