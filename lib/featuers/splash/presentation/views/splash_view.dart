@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/navigation/navigation.dart';
+import 'package:yemenhistory/core/services/service_locator.dart';
 import 'package:yemenhistory/core/utils/app_strings.dart';
 import 'package:yemenhistory/core/utils/app_text_styles.dart';
 
@@ -14,7 +15,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    bool skip = CacheHelper().getData(key: 'visitedOnBoarding') ?? false;
+    bool skip = getIt<CacheHelper>().getData(key: 'isOnBoardingVisited') ?? false;
 
     if (skip) {
       delayedNavagte(context, '/signUp');

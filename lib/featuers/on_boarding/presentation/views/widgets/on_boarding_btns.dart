@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/navigation/navigation.dart';
 import 'package:yemenhistory/core/utils/app_strings.dart';
 import 'package:yemenhistory/core/widgets/custom_btn.dart';
 import 'package:yemenhistory/featuers/on_boarding/data/model/onboarding_model.dart';
+import 'package:yemenhistory/featuers/on_boarding/presentation/views/functions/on_boarding.dart';
 
 class OnBoardingBtns extends StatelessWidget {
   const OnBoardingBtns({super.key, required this.controller, required this.currentIndex});
@@ -18,14 +18,14 @@ class OnBoardingBtns extends StatelessWidget {
           CustomBtn(
             text: AppStrings.createAccount,
             onPressed: () {
-              CacheHelper().saveData(key: 'visitedOnBoarding', value: true);
+              onBoardingVisited();
               customReplacementNavigate(context, '/SignUp');
             },
           ),
           SizedBox(height: 16),
           GestureDetector(
             onTap: () {
-              CacheHelper().saveData(key: 'visitedOnBoarding', value: true);
+              onBoardingVisited();
               customReplacementNavigate(context, '/signIn');
             },
             child: Text(AppStrings.loginNow),

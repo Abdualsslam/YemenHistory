@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/routes/app_routes.dart';
+import 'package:yemenhistory/core/services/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Setup the service locator
+  setupServiceLocator();
+
   // Initialize the cache helper before running the app
-  await CacheHelper().init();
+  await getIt<CacheHelper>().init();
+
   runApp(const YemenHistory());
 }
 

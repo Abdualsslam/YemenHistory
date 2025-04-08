@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/navigation/navigation.dart';
-import 'package:yemenhistory/core/utils/app_strings.dart';
-import 'package:yemenhistory/core/widgets/custom_btn.dart';
-import 'package:yemenhistory/featuers/on_boarding/data/model/onboarding_model.dart';
+import 'package:yemenhistory/featuers/on_boarding/presentation/views/functions/on_boarding.dart';
 import 'package:yemenhistory/featuers/on_boarding/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:yemenhistory/featuers/on_boarding/presentation/views/widgets/on_boarding_btns.dart';
 import 'package:yemenhistory/featuers/on_boarding/presentation/views/widgets/on_boarding_widget_body.dart';
@@ -33,7 +30,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     SizedBox(height: 40),
                     CustomNavBar(
                       onTap: () {
-                        CacheHelper().saveData(key: 'isOnBoarding', value: true);
+                        onBoardingVisited();
                         customReplacementNavigate(context, '/signUp');
                       },
                     ),
