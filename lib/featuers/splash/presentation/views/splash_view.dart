@@ -4,7 +4,7 @@ import 'package:yemenhistory/core/utils/app_strings.dart';
 import 'package:yemenhistory/core/utils/app_text_styles.dart';
 
 class SplashView extends StatefulWidget {
-  SplashView({super.key});
+  const SplashView({super.key});
 
   @override
   State<SplashView> createState() => _SplashViewState();
