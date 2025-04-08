@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yemenhistory/core/utils/app_assets.dart';
 import 'package:yemenhistory/core/utils/app_text_styles.dart';
+import 'package:yemenhistory/featuers/on_boarding/data/model/onboarding_model.dart';
 import 'package:yemenhistory/featuers/on_boarding/presentation/views/widgets/custom_smooth_page_indicator.dart';
 
 class OnBoardingWidgetBody extends StatelessWidget {
@@ -8,26 +9,42 @@ class OnBoardingWidgetBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PageController controller = PageController();
-    return Expanded(
+    return SizedBox(
+      height: 500,
       child: PageView.builder(
         controller: controller,
-        itemCount: 3,
+        itemCount: onboardingData.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Image.asset(Assets.imagesOnBoarding1),
+              Container(
+                height: 290,
+                width: 343,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(onboardingData[index].image), // AssetImage
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+
               const SizedBox(height: 24),
               CustomSmoothPageIndicator(controller: controller),
               const SizedBox(height: 24),
               Text(
-                'explore data explore data explore data explore data explore data',
+                onboardingData[index].title,
                 style: CustomTextStyles.poppins500style24.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
+              const SizedBox(height: 16),
               Text(
-                'explore data explore data explore data explore data explore data',
+                onboardingData[index].description,
                 style: CustomTextStyles.poppins300style16,
                 textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           );
