@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/routes/app_routes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize the cache helper before running the app
+  await CacheHelper().init();
   runApp(const YemenHistory());
 }
 

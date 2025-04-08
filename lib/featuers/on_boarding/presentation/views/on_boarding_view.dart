@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/navigation/navigation.dart';
 import 'package:yemenhistory/core/utils/app_strings.dart';
 import 'package:yemenhistory/core/widgets/custom_btn.dart';
@@ -30,7 +31,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 Column(
                   children: [
                     SizedBox(height: 40),
-                    CustomNavBar(onTap: () => customReplacementNavigate(context, '/signUp')),
+                    CustomNavBar(
+                      onTap: () {
+                        CacheHelper().saveData(key: 'isOnBoarding', value: true);
+                        customReplacementNavigate(context, '/signUp');
+                      },
+                    ),
                     OnBoardingWidgetBody(
                       controller: _controller,
                       onPageChanged: (index) {

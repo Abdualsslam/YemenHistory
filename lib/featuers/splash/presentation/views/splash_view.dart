@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/navigation/navigation.dart';
 import 'package:yemenhistory/core/utils/app_strings.dart';
 import 'package:yemenhistory/core/utils/app_text_styles.dart';
@@ -13,13 +14,19 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    delayedNavagte(context);
+    bool skip = CacheHelper().getData(key: 'visitedOnBoarding') ?? false;
+
+    if (skip) {
+      delayedNavagte(context, '/signUp');
+    } else {
+      delayedNavagte(context, '/onBoarding');
+    }
     super.initState();
   }
 
-  void delayedNavagte(context) {
+  void delayedNavagte(context, path) {
     Future.delayed(const Duration(seconds: 2), () {
-      customReplacementNavigate(context, '/onBoarding');
+      customReplacementNavigate(context, path);
     });
   }
 
