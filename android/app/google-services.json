@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "28631560840",
-    "project_id": "yemen-history-15c00",
-    "storage_bucket": "yemen-history-15c00.firebasestorage.app"
+    "project_number": "448752377065",
+    "project_id": "resturanttest-54e2e",
+    "storage_bucket": "resturanttest-54e2e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:28631560840:android:e5ae2239447dc129b9a53d",
+        "mobilesdk_app_id": "1:448752377065:android:ad2711d1f391044795a478",
         "android_client_info": {
           "package_name": "com.example.yemenhistory"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCwdYuCSMoKbBmBvTwj2ie7mzMmVo0L_Is"
+          "current_key": "AIzaSyA_gKDXuWT3vMgaJ4kxj3Ku5-oEuI7jDEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448752377065:android:650b039f7694152395a478",
+        "android_client_info": {
+          "package_name": "com.sixamtech.stack_food_restaurant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_gKDXuWT3vMgaJ4kxj3Ku5-oEuI7jDEc"
         }
       ],
       "services": {
