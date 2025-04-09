@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:yemenhistory/core/database/cache/cache_helper.dart';
 import 'package:yemenhistory/core/routes/app_routes.dart';
 import 'package:yemenhistory/core/services/service_locator.dart';
+import 'package:yemenhistory/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +14,7 @@ void main() async {
   // Initialize the cache helper before running the app
   await getIt<CacheHelper>().init();
 
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const YemenHistory());
 }
 

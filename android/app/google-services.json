@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "28631560840",
+    "project_id": "yemen-history-15c00",
+    "storage_bucket": "yemen-history-15c00.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28631560840:android:e5ae2239447dc129b9a53d",
+        "android_client_info": {
+          "package_name": "com.example.yemenhistory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwdYuCSMoKbBmBvTwj2ie7mzMmVo0L_Is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
