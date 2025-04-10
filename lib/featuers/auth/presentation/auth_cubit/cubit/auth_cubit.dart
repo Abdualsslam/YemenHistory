@@ -1,19 +1,21 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/cupertino.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-  late String? emailAddress;
-  late String? password;
-  late String? firstName;
-  late String? lastName;
+  String? emailAddress;
+  String? password;
+  String? firstName;
+  String? lastName;
+  bool? TermsAndConditionWidgetvalue = false;
+  GlobalKey<FormState> singnupFormKey = GlobalKey<FormState>();
   signUpWithEmailAndPassword() async {
     emit(SignupLoadingState());
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailAddress!, password: password!);
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailAddress!, password: password!);
       emit(SignupSuccessState());
     } on FirebaseAuthException catch (e) {
       emit(SignupFailurState(error: e.message.toString()));
@@ -26,5 +28,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SignupFailurState(error: e.toString()));
       print(e);
     }
+  }
+
+  void updateTermsAndConditionCheckBox({required newValue}) {
+    TermsAndConditionWidgetvalue = newValue;
+    emit(TermsAndConditionState());
   }
 }

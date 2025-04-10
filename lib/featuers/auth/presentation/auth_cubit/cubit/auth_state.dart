@@ -9,6 +9,8 @@ final class SignupLoadingState extends AuthState {}
 
 final class SignupSuccessState extends AuthState {}
 
+final class TermsAndConditionState extends AuthState {}
+
 final class SignupFailurState extends AuthState {
   final String error;
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yemenhistory/core/functions/custom_toast.dart';
+import 'package:yemenhistory/core/navigation/navigation.dart';
+import 'package:yemenhistory/core/utils/app_colors.dart';
 import 'package:yemenhistory/core/utils/app_strings.dart';
 import 'package:yemenhistory/core/widgets/custom_btn.dart';
 import 'package:yemenhistory/featuers/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
@@ -11,50 +14,68 @@ class CustomSignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authCubit = BlocProvider.of<AuthCubit>(context);
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is SignupSuccessState) {
+          // showToast("Account created successfully!");
+          // Navigate to the next screen or show a success message
+          customReplacementNavigate(context, '/signIn');
+        } else if (state is SignupFailurState) {
+          // Show an error message
+          // showToast(state.error);
+        }
       },
       builder: (context, state) {
         return Form(
+          key: authCubit.singnupFormKey,
           child: Column(
             children: [
               CustomTextFormField(
                 labelText: AppStrings.fristName,
                 onChanged: (value) {
-                  BlocProvider.of<AuthCubit>(context).firstName = value;
+                  authCubit.firstName = value;
                 },
               ),
 
               CustomTextFormField(
                 labelText: AppStrings.lastName,
                 onChanged: (value) {
-                  BlocProvider.of<AuthCubit>(context).lastName = value;
+                  authCubit.lastName = value;
                 },
               ),
 
               CustomTextFormField(
                 labelText: AppStrings.emailAddress,
                 onChanged: (value) {
-                  BlocProvider.of<AuthCubit>(context).emailAddress = value;
+                  authCubit.emailAddress = value;
                 },
               ),
 
               CustomTextFormField(
                 labelText: AppStrings.password,
                 onChanged: (value) {
-                  BlocProvider.of<AuthCubit>(context).password = value;
+                  authCubit.password = value;
                 },
               ),
 
               TermsAndConditionWidget(),
               SizedBox(height: 16),
-              CustomBtn(
-                text: AppStrings.signUp,
-                onPressed: () {
-                  BlocProvider.of<AuthCubit>(context).signUpWithEmailAndPassword();
-                },
-              ),
+              state is SignupLoadingState
+                  ? Center(child: CircularProgressIndicator(color: AppColors.primaryColor))
+                  : CustomBtn(
+                    text: AppStrings.signUp,
+                    color: authCubit.TermsAndConditionWidgetvalue == true ? AppColors.grey : null,
+                    onPressed: () {
+                      if (authCubit.TermsAndConditionWidgetvalue == true) {
+                        if (authCubit.singnupFormKey.currentState!.validate()) {
+                          // Call the sign-up method from the cubit
+                          // You can also show a loading indicator here if needed
+                          authCubit.signUpWithEmailAndPassword();
+                        }
+                      }
+                    },
+                  ),
             ],
           ),
         );
