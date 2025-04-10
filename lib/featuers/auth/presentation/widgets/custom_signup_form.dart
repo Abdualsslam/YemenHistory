@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yemenhistory/core/functions/custom_toast.dart';
 import 'package:yemenhistory/core/navigation/navigation.dart';
 import 'package:yemenhistory/core/utils/app_colors.dart';
 import 'package:yemenhistory/core/utils/app_strings.dart';
@@ -18,12 +17,33 @@ class CustomSignUpForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignupSuccessState) {
-          // showToast("Account created successfully!");
+          // showToast("Account created successfully!", context);
           // Navigate to the next screen or show a success message
-          customReplacementNavigate(context, '/signIn');
+          customReplacementNavigate(context, '/home');
         } else if (state is SignupFailurState) {
           // Show an error message
-          // showToast(state.error);
+          // showToast(state.error, context);
+
+          // final materialBanner = MaterialBanner(
+          //   /// need to set following properties for best effect of awesome_snackbar_content
+          //   elevation: 0,
+          //   backgroundColor: Colors.transparent,
+          //   forceActionsBelow: true,
+          //   content: AwesomeSnackbarContent(
+          //     title: 'Oh Hey!!',
+          //     message: 'This is an example error message that will be shown in the body of materialBanner!',
+
+          //     /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          //     contentType: ContentType.success,
+          //     // to configure for material banner
+          //     inMaterialBanner: true,
+          //   ),
+          //   actions: const [SizedBox.shrink()],
+          // );
+
+          // ScaffoldMessenger.of(context)
+          //   ..hideCurrentMaterialBanner()
+          //   ..showMaterialBanner(materialBanner);
         }
       },
       builder: (context, state) {
@@ -65,7 +85,7 @@ class CustomSignUpForm extends StatelessWidget {
                   ? Center(child: CircularProgressIndicator(color: AppColors.primaryColor))
                   : CustomBtn(
                     text: AppStrings.signUp,
-                    color: authCubit.TermsAndConditionWidgetvalue == true ? AppColors.grey : null,
+                    color: authCubit.TermsAndConditionWidgetvalue == false ? AppColors.grey : null,
                     onPressed: () {
                       if (authCubit.TermsAndConditionWidgetvalue == true) {
                         if (authCubit.singnupFormKey.currentState!.validate()) {
